@@ -45,5 +45,8 @@ public class UserLogic : IUserLogic
         if (password.Length > 40)
             throw new Exception("Password must be maximum 14 characters");
     }
-
+    public Task<IEnumerable<User>> GetAsync(SearchUserParametersDto searchParameters)
+    {
+        return userDao.GetAsync(searchParameters);
+    }
 }
