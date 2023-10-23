@@ -1,2 +1,36 @@
-{"Users":[{"Id":1,"UserName":"Peter","Password":"veslo222"},
-  {"Id":2,"UserName":"Matej","Password":"kravicka123"}],"Posts":[]}
+{
+  "Users": [
+    {
+      "Id": 1,
+      "UserName": "Peter",
+      "Password": "veslo222"
+    },
+    {
+      "Id": 2,
+      "UserName": "Matej",
+      "Password": "kravicka123"
+    }
+  ],
+  "Posts": [
+    {
+      "Id": 1,
+      "Owner": {
+        "Id": 1,
+        "UserName": "Peter",
+        "Password": "veslo222"
+      },
+      "Title": "WHAT IS THE FISH",
+      "Text": "never again will I eat nemo"
+    },
+    {
+      "Id": 2,
+      "Owner": {
+        "Id": 1,
+        "UserName": "Peter",
+        "Password": "veslo222"
+      },
+      "Title": "WHAT IS THE FISH",
+      "Text": "never again will I eat nemo"
+    }
+  ]
+}
