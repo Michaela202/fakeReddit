@@ -1,14 +1,17 @@
-﻿namespace Domain.DTOs;
+﻿using Domain.Models;
+
+
+namespace Domain.DTOs;
 
 public class PostCreationDto
 {
-    public int OwnerId { get; }
+    public string Username { get; }
     public string Title { get; }
     public string Text { get; }
     
-    public PostCreationDto(int  ownerId, string title, string text)
+    public PostCreationDto( string username, string title, string text)
     {
-        OwnerId = ownerId;
+        Username = username;
         Title = title;
         Text = text;
     }

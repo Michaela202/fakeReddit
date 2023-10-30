@@ -1,0 +1,70 @@
+﻿@page "/CreatePost"
+@attribute [Authorize]
+@using Domain.Models
+@inject IUserService userService
+@inject IPostService postService
+@inject NavigationManager navMgr
+@inject IAuthService authService 
+@using HTTPClients.ClientInterfaces
+@using Domain.DTOs
+@using BlazorServer.Services.HTTP
+@using BlazorServer.Services
+<div class="card">
+        <h3>Create Post</h3>
+        <div class="form-group field">
+            <label>Title:</label>
+            <input type="text" @bind="postTitle"/>
+             <label>POST:</label>
+            <input type="text" @bind="postText"/>
+        </div>
+        <div class="form-group field">
+            <label>Assignee:</label>
+          <input type="text" @bind="assignee"/>
+           
+        </div>
+        <div class="button-row">
+            @if (!string.IsNullOrEmpty(msg))
+            {
+                <label style="color: red">@msg</label>
+            }
+            <button @onclick="Create" class="acceptbtn">Create</button>
+        </div>
+    
+</div>
+@code {
+    
+    private int? selectedUserId;
+    private string postTitle = "";
+    private string postText = "";
+    private string assignee = "";
+    private string msg = "";
+    
+    protected override async Task OnInitializedAsync()
+    {
+        assignee = authService.GetAuthAsync().Result.Identity.Name;
+
+
+    }
+    private async Task Create()
+    {
+        msg = "";
+       
+        if (string.IsNullOrEmpty(postTitle))
+        {
+            msg = "Title cannot be empty!";
+            return;
+        }
+
+        try
+        {
+            PostCreationDto dto = new(assignee, postTitle, postText);
+            await postService.CreateAsync(dto);
+            navMgr.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

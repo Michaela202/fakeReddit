@@ -2,10 +2,10 @@
 
 public class PostBasicDto
 {
-    public int Id { get; }
-    public string OwnerName { get; }
-    public string Title { get; }
-    public string Text { get; }
+    public int Id { get; set; }
+    public string OwnerName { get; set; }
+    public string Title { get; set; }
+    public string Text { get; set; }
     
     public PostBasicDto(int id, string ownerName, string title, string text)
     {

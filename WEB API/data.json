@@ -9,6 +9,56 @@
       "Id": 2,
       "UserName": "Matej",
       "Password": "kravicka123"
+    },
+    {
+      "Id": 3,
+      "UserName": "helena",
+      "Password": "string123"
+    },
+    {
+      "Id": 4,
+      "UserName": "asdasd",
+      "Password": "asdasd"
+    },
+    {
+      "Id": 5,
+      "UserName": "Voldemort123",
+      "Password": "dominicka123"
+    },
+    {
+      "Id": 6,
+      "UserName": "THE FORCE",
+      "Password": "lukeisthebest"
+    },
+    {
+      "Id": 7,
+      "UserName": "IAmYourFather",
+      "Password": "luke123"
+    },
+    {
+      "Id": 8,
+      "UserName": "asdasdf",
+      "Password": "12345678"
+    },
+    {
+      "Id": 9,
+      "UserName": "umpalumpa",
+      "Password": "12345678"
+    },
+    {
+      "Id": 10,
+      "UserName": "asdasdfd",
+      "Password": "12345678"
+    },
+    {
+      "Id": 11,
+      "UserName": "cocoonest123",
+      "Password": "dominicka123"
+    },
+    {
+      "Id": 12,
+      "UserName": "nemo",
+      "Password": "12345678"
     }
   ],
   "Posts": [
@@ -31,6 +81,106 @@
       },
       "Title": "WHAT IS THE FISH",
       "Text": "never again will I eat nemo"
+    },
+    {
+      "Id": 3,
+      "Owner": {
+        "Id": 1,
+        "UserName": "Peter",
+        "Password": "veslo222"
+      },
+      "Title": "articoka",
+      "Text": ""
+    },
+    {
+      "Id": 4,
+      "Owner": {
+        "Id": 2,
+        "UserName": "Matej",
+        "Password": "kravicka123"
+      },
+      "Title": "the end",
+      "Text": "of the fucking word"
+    },
+    {
+      "Id": 5,
+      "Owner": {
+        "Id": 2,
+        "UserName": "Matej",
+        "Password": "kravicka123"
+      },
+      "Title": "RED DRESS poem",
+      "Text": "I want a red dress.  I want it flimsy and cheap,  I want it too tight, I want to wear it  until someone tears it off me.  I want it sleeveless and backless,  this dress, so no one has to guess  what\u0027s underneath. I want to walk down the street past Thrifty\u0027s and the hardware store  with all those keys glittering in the window,  past Mr. and Mrs. Wong selling day-old  donuts in their caf\u00E9, past the Guerra brothers  slinging pigs from the truck and onto the dolly,  hoisting the slick snouts over their shoulders.  I want to walk like I\u0027m the only  woman on earth and I can have my pick.  I want that red dress bad. I want it to confirm  your worst fears about me,  to show you how little I care about you  or anything except what  I want. When I find it, I\u0027ll pull that garment  from its hanger like I\u0027m choosing a body  to carry me into this world, through  the birth-cries and the love-cries too,  and I\u0027ll wear it like bones, like skin,  it\u0027ll be the goddamned  dress they bury me in."
+    },
+    {
+      "Id": 6,
+      "Owner": {
+        "Id": 1,
+        "UserName": "Peter",
+        "Password": "veslo222"
+      },
+      "Title": "abraka kedavra",
+      "Text": "dont use this curse on harry plotter"
+    },
+    {
+      "Id": 7,
+      "Owner": {
+        "Id": 5,
+        "UserName": "Voldemort123",
+        "Password": "dominicka123"
+      },
+      "Title": "I AM LORT VOLDEMORT",
+      "Text": "nose job was not the best life choice"
+    },
+    {
+      "Id": 8,
+      "Owner": {
+        "Id": 1,
+        "UserName": "Peter",
+        "Password": "veslo222"
+      },
+      "Title": "I AM LORT VOLDEMORT",
+      "Text": "this should create chaos"
+    },
+    {
+      "Id": 9,
+      "Owner": {
+        "Id": 1,
+        "UserName": "Peter",
+        "Password": "veslo222"
+      },
+      "Title": "I AM LORT VOLDEMORT",
+      "Text": "this should break something"
+    },
+    {
+      "Id": 10,
+      "Owner": {
+        "Id": 7,
+        "UserName": "IAmYourFather",
+        "Password": "luke123"
+      },
+      "Title": "The profoundness of the Death star",
+      "Text": "-*---*------ ---* --- *"
+    },
+    {
+      "Id": 11,
+      "Owner": {
+        "Id": 11,
+        "UserName": "cocoonest123",
+        "Password": "dominicka123"
+      },
+      "Title": "BOMB AWAY",
+      "Text": "not so serious "
+    },
+    {
+      "Id": 12,
+      "Owner": {
+        "Id": 12,
+        "UserName": "nemo",
+        "Password": "12345678"
+      },
+      "Title": "UNDER THE SEA",
+      "Text": "the sharks are your friends"
     }
   ]
 }

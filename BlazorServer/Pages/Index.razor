@@ -1,0 +1,104 @@
+﻿@page "/"
+@using Domain.Models
+@using HTTPClients.ClientInterfaces
+@inject IPostService postService
+@inject NavigationManager navMgr
+
+<PageTitle>Index</PageTitle>
+<h1>POSTS</h1>
+
+Here you can see all the posts
+<div class="filter-bar">
+    <div class="filters-container">
+        <img src="icons/@(doShowFilters ? "clear_" : "")funnel.png" class="funnel" @onclick="@(() => doShowFilters = !doShowFilters)" alt="Funnel"/>
+        @if (doShowFilters)
+        {
+            <div class="filter">
+                <label>Username:</label>
+                <input type="text" @bind="usernameFilter"/>
+            </div>
+            <div class="filter">
+                <label>User id:</label>
+                <input type="number" @bind="userIdFilter"/>
+            </div>
+           
+            <div class="filter">
+                <label>Title contains:</label>
+                <input type="text" @bind="titleContainsFilter"/>
+            </div>
+            <div class="filter">
+                <label>Text contains:</label>
+                <input type="text" @bind="textContainsFilter"/>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <button @onclick="LoadPosts">Load</button>
+</div>
+
+@if (posts == null)
+{
+}
+else if (!posts.Any())
+{
+    <p>No Posts to display</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+           
+            <th>Writer</th>
+            <th>Title</th>
+          
+             <th>View Post</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in posts)
+        {
+            <tr>
+               
+                <td>@item.Owner.UserName</td>
+                <td>@item.Title</td>
+                
+                 <td>
+                     <img src="icons/edit.gif" class="funnel" @onclick="@(() => navMgr.NavigateTo($"/PostAlone/{item.Id}"))"/>
+                     </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+@if (!string.IsNullOrEmpty(msg))
+{
+    <label style="color: red">@msg</label>
+}
+@code {
+    private IEnumerable<Post>? posts;
+    private string msg = "";
+    private bool doShowFilters = false;
+    //create a method for clearing the filters
+
+    private string? usernameFilter;
+    private int? userIdFilter;
+    private string? textContainsFilter;
+    private string? titleContainsFilter;
+    
+    private async Task LoadPosts()
+    {
+        try
+        {
+            
+            posts = await postService.GetAsync(usernameFilter, userIdFilter, titleContainsFilter, textContainsFilter);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

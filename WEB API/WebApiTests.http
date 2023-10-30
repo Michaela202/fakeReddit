@@ -1,0 +1,9 @@
+POST https://localhost:7060/auth/login
+Content-Type: application/json
+
+{
+  "UserName": "Peter",
+  "Password": "veslo222" }
+###
+GET https://localhost:7060/test/authorized
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiI2OWU3MDg0MS0xOTUwLTQ4OTItOTQyOS0xN2E0NGNhNjQ1MTQiLCJpYXQiOiIyOS8xMC8yMDIzIDE1OjU3OjQwIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IlBldGVyIiwiZXhwIjoxNjk4NTk4NjYwLCJpc3MiOiJKV1RBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkpXVFNlcnZpY2VCbGF6b3JXYXNtQ2xpZW50In0.LK435CeGq_ET2fX9Wmobed0AAywbjZKaE-tAv-yHY1cqNr3oevbIvXps7L55W2mo9JBESRI8Nte9dG_H1YIEig

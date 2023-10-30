@@ -40,10 +40,10 @@ public class UserLogic : IUserLogic
 
         if (userName.Length > 15)
             throw new Exception("Username must be less than 16 characters!");
-        if (password.Length < 8)
+       /* if (password.Length < 8)
             throw new Exception("Password must be at least 8 characters long");
         if (password.Length > 40)
-            throw new Exception("Password must be maximum 14 characters");
+            throw new Exception("Password must be maximum 14 characters");*/
     }
     public Task<IEnumerable<User>> GetAsync(SearchUserParametersDto searchParameters)
     {

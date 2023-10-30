@@ -1,0 +1,70 @@
+﻿@page "/ViewMyPosts"
+@using Domain.Models
+@inject IAuthService authService 
+@using HTTPClients.ClientInterfaces
+@using BlazorServer.Services
+@attribute [Authorize]
+@inject IPostService postService
+@inject NavigationManager navMgr
+<h3 >View My Posts</h3>
+  <label>Username:</label>
+<label> @authService.GetAuthAsync().Result.Identity.Name</label>
+<div>
+    <button @onclick="LoadPosts">Load</button>
+</div>
+@if (posts == null)
+{
+}
+else if (!posts.Any())
+{
+    <p>No Posts to display</p>
+}
+else
+{
+ <table class="table">
+        <thead>
+        <tr>
+           
+            <th>Writer</th>
+            <th>Title</th>
+          
+             <th>View Post</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in posts)
+        {
+            <tr>
+               
+                <td>@item.Owner.UserName</td>
+                <td>@item.Title</td>
+                
+                 <td>
+                                    <img src="icons/edit.gif" class="funnel" @onclick="@(() => navMgr.NavigateTo($"/PostAlone/{item.Id}"))"/>
+                                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+@if (!string.IsNullOrEmpty(msg))
+{
+    <label style="color: red">@msg</label>
+}
+@code {
+    private IEnumerable<Post>? posts;
+    private string msg = "";
+    private async Task LoadPosts()
+    {
+        try
+        {
+
+            posts = await postService.GetAsyncByName(authService.GetAuthAsync().Result.Identity.Name);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

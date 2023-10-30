@@ -1,0 +1,65 @@
+﻿@page "/PostAlone/{id:int}"
+@using Domain.Models
+@using Domain.DTOs
+@using HTTPClients.ClientInterfaces
+@inject IUserService UserService
+@inject IPostService PostService
+
+<div class="card">
+    @if (users == null)
+    {
+        <label>Loading users...</label>
+    }
+    else if (!users.Any())
+    {
+        <label>No users, you cannot create a Todo</label>
+    }
+    else if (dto == null)
+    {
+        <label>Loading Todo data..</label>
+    }
+    else
+    {
+        
+        <div class="form-group field">
+            <label>Title:</label>
+          <h3>   <output> @dto.Title </output></h3>
+        </div>
+        <div class="form-group field">
+            <label>Assignee:</label>
+            <output> @dto.OwnerName</output>
+        </div>
+        <div class="form-group field">
+            <label>Text:</label>
+            <output> @dto.Text</output>
+        </div>
+        
+    }
+</div>
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private PostBasicDto dto = null!;
+    private string msg = "";
+    private IEnumerable<User>? users;
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            users = await UserService.AsyncGetUsers();
+            PostBasicDto postData = await PostService.GetByIdAsync(Id);
+            User currentlyAssigned = users.First(user => user.UserName.Equals(postData.OwnerName));
+
+            dto = new(postData.Id, currentlyAssigned.UserName, postData.Title, postData.Text)
+            {
+            };
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}
