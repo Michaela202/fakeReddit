@@ -93,7 +93,7 @@ else
         try
         {
             
-            posts = await postService.GetAsync(usernameFilter, userIdFilter, titleContainsFilter, textContainsFilter);
+            posts = await postService.GetAsync( userIdFilter, textContainsFilter, titleContainsFilter, usernameFilter);
         }
         catch (Exception e)
         {

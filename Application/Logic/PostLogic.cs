@@ -24,8 +24,9 @@ public class PostLogic: IPostLogic
             throw new Exception($"User with username {postCreationDto.Username} was not found.");
         }
 
+        Post post = new Post(user.Id, user.UserName,postCreationDto.Title, postCreationDto.Text);
         ValidatePost(postCreationDto);
-        Post post = new Post(user, postCreationDto.Title, postCreationDto.Text);
+        
         Post created = await PostDao.CreateAsync(post);
         return created;
 
@@ -43,7 +44,7 @@ public class PostLogic: IPostLogic
             throw new Exception($"Post with id {id} not found");
         }
 
-        return new PostBasicDto(post.Id, post.Owner.UserName, post.Title, post.Text);
+        return new PostBasicDto(post.Id, post.Text, post.Title, post.UserName);
     }
     
 

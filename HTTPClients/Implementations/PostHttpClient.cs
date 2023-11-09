@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Domain.DTOs;
 using Domain.Models;
 using HTTPClients.ClientInterfaces;
@@ -25,9 +26,9 @@ public class PostHttpClient: IPostService
         }
     }
 
-    public async Task<ICollection<Post>> GetAsync(string? userName, int? userId, string? titleContains, string? textContains)
+    public async Task<ICollection<Post>> GetAsync(int? userId, string? textContains, string? titleContains, string? userName)
     {
-        string query = ConstructQuery(userName, userId, titleContains, textContains);
+        string query = ConstructQuery( userId,textContains,titleContains,userName);
         HttpResponseMessage responseMessage = await client.GetAsync("/Post"+query);
         string content = await responseMessage.Content.ReadAsStringAsync();
         if (!responseMessage.IsSuccessStatusCode)
@@ -37,11 +38,14 @@ public class PostHttpClient: IPostService
 
         ICollection<Post> posts = JsonSerializer.Deserialize<ICollection<Post>>(content, new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true
+            PropertyNameCaseInsensitive = true,
+            IncludeFields = true
         })!;
         return posts;
     }
 
+
+   
     public async Task<IEnumerable<Post>> GetAsyncByName(string? userNameContains = null)
     {
         string uri = "/post";
@@ -63,7 +67,7 @@ public class PostHttpClient: IPostService
         return posts;
     }
 
-    private static string ConstructQuery(string? userName, int? userId, string? titleContains, string? textContains)
+    private static string ConstructQuery( int? userId,  string? textContains,string? titleContains,string? userName)
     {
         string query = "";
         if (!string.IsNullOrEmpty(userName))
